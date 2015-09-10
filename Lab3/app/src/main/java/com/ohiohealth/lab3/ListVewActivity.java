@@ -5,37 +5,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-
-    private Button _button;
-    private EditText _editText;
-    public static String NUMBER_OF_CELLS = "numberOfCells";
+public class ListVewActivity extends AppCompatActivity {
+    private int numberOfCells;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        _editText = (EditText) findViewById(R.id.editText);
-        _button = (Button) findViewById(R.id.button);
-        final Intent intent = new Intent(this, ListVewActivity.class);
-        _button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent.putExtra(NUMBER_OF_CELLS, Integer.valueOf(_editText.getText().toString()));
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.activity_list_vew);
+        numberOfCells = getIntent().getIntExtra(MainActivity.NUMBER_OF_CELLS, 0);
+        Toast toast = Toast.makeText(getApplicationContext(), String.valueOf(numberOfCells), Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_list_vew, menu);
         return true;
     }
 
