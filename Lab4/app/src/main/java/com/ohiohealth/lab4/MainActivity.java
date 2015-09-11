@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 _textView.setText("connecting ...");
-                String stringUrl ="http://jsonblob.com/api/jsonBlob/55f2dc8be4b01190df382709";
+                String stringUrl ="https://jsonblob.com/api/jsonBlob/55f2dc8be4b01190df382709";
                 ConnectivityManager connMgr = (ConnectivityManager)
                         getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -105,14 +105,16 @@ public class MainActivity extends AppCompatActivity {
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
+            conn.setInstanceFollowRedirects(true);
             // Starts the query
             conn.connect();
             int response = conn.getResponseCode();
-            Log.d(DEBUG_TAG, "The response is: " + response);
+            Log.d(DEBUG_TAG, "The response code is: " + response);
             is = conn.getInputStream();
 
             // Convert the InputStream into a string
             String contentAsString = readIt(is, len);
+            Log.d(DEBUG_TAG, "The response is: " + contentAsString);
             return contentAsString;
 
             // Makes sure that the InputStream is closed after the app is
