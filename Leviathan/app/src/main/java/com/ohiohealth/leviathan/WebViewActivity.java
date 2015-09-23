@@ -39,7 +39,7 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
 
-        _webView.loadUrl("http://www.google.com");
+        _webView.loadUrl("https://www.ohiohealth.com/pagelayouts/findadoctor/physiciansearch.aspx?colorbox=true");
     }
 
 
