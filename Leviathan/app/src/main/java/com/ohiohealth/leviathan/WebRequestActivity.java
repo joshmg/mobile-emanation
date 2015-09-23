@@ -1,6 +1,7 @@
 package com.ohiohealth.leviathan;
 
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,15 @@ private TextView mResults;
     {
         DictionaryList resultsList;
         CategoryPositionResults results2;
+        ProgressDialog p;
+        @Override
+        protected void onPreExecute()
+        {
+            p = new ProgressDialog(WebRequestActivity.this);
+            p.setMessage("Aquiring JSON");
+            p.show();
+        }
+
         @Override
         protected String doInBackground(String... params) {
             BobertService bobertService = new Bobert().bobertService();
@@ -56,6 +66,7 @@ private TextView mResults;
                 resultsString += "\r\n\r\nID: " + d.getID() + "\r\nDecription: " + d.getDescription();
             }
             mResults.setText(resultsString);
+            p.hide();
         }
     }
 }
